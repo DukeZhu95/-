@@ -1,19 +1,23 @@
 .dashboard-root {
-    display: flex;
+    //display: flex;
     flex-direction: column;
     padding: 20px;
     background-color: #f0f0f0;
-    height: 100vh;
+    height: 82vh;
     justify-content: space-between;
 }
 
 .dashboard-header {
     background-color: #fff;
-    padding: 20px;
+    padding: 30px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
     .header-content {
+        width: 100%;
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -22,56 +26,71 @@
     .date-info {
         p {
             margin: 0;
-            font-size: 14px;
+            font-size: 64px;
+            font-family: "Agency FB", serif;
             color: #999;
         }
 
         h2 {
             margin: 5px 0 0;
-            font-size: 24px;
+            font-size: 50px;
+            font-family: "Agency FB", serif;
             color: #333;
         }
     }
 
-    .user-info {
-        text-align: right;
+    .user-avatar {
+        margin-right: 20px;
+    }
+
+    .welcome-message {
+        text-align: center;
+        margin-top: 20px;
 
         span {
             display: block;
-            font-size: 18px;
+            font-size: 40px;
+            font-family: Algerian, serif;
             color: #333;
-            margin-bottom: 5px;
         }
 
         p {
             margin: 0;
-            font-size: 14px;
+            font-size: 32px;
+            font-family: "Arial Black", serif;
             color: #999;
         }
     }
 }
 
 .task-overview {
-    margin-top: 20px;
+    margin-top: 15px;
+    font-family: "Agency FB", serif;
 
     .active-task {
         background-color: #6258e0;
         color: #fff;
         padding: 20px;
         border-radius: 8px;
-        margin-bottom: 20px;
+        margin-bottom: 10px;
     }
 
     .monthly-preview {
         h3 {
             margin-bottom: 10px;
-            font-size: 18px;
+            font-size: 24px;
+            font-family: "Agency FB", serif;
             color: #333;
         }
 
         .task-stats {
-            display: flex;
-            justify-content: space-between;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 1fr 1fr;
+            gap: 15px;
+            grid-template-areas:
+                "done in-progress"
+                "waiting-review pending";
 
             .stat-card {
                 background-color: #fff;
@@ -81,26 +100,40 @@
                 text-align: center;
 
                 h4 {
-                    margin: 0;
-                    font-size: 24px;
+                    margin: 15px;
+                    font-size: 48px;
+                    font-family: "Agency FB", serif;
                     color: #333;
                 }
 
                 p {
-                    margin: 5px 0 0;
-                    font-size: 14px;
+                    margin: 5px 0 5px;
+                    font-size: 24px;
+                    font-family: "Agency FB", serif;
                     color: #999;
+                }
+
+                &.done {
+                    grid-area: done;
+                    background-color: #aef6aa;
+                }
+
+                &.in-progress {
+                    grid-area: in-progress;
+                    background-color: #ffde5d;
+                }
+
+                &.pending {
+                    grid-area: pending;
+                    background-color: #94c7f5;
+
+                }
+
+                &.waiting-review {
+                    grid-area: waiting-review;
+                    background-color: #f6aaf2;
                 }
             }
         }
     }
-}
-
-.dashboard-footer {
-    display: flex;
-    justify-content: space-around;
-    background-color: #fff;
-    padding: 10px 0;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }

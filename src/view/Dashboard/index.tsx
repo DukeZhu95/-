@@ -1,6 +1,6 @@
 import React from 'react';
 import { observer } from 'mobx-react-lite';
-import { IconContext, HouseLine, CalendarBlank, ChatCircleDots, UserCircle } from '@phosphor-icons/react';
+import { UserCircle } from '@phosphor-icons/react';
 import './index.less';
 
 const Dashboard = () => {
@@ -12,11 +12,13 @@ const Dashboard = () => {
                         <p>Sunday</p>
                         <h2>5 April</h2>
                     </div>
-                    <div className="user-info">
-                        <UserCircle size={32} weight="fill" />
-                        <span>Hi Lucas.</span>
-                        <p>5 Tasks are pending</p>
+                    <div className="user-avatar">
+                        <UserCircle size={128} weight="fill" />
                     </div>
+                </div>
+                <div className="welcome-message">
+                    <span>Kia ora, Duke!</span>
+                    <p>5 Tasks are pending...</p>
                 </div>
             </header>
             <section className="task-overview">
@@ -28,33 +30,25 @@ const Dashboard = () => {
                 <div className="monthly-preview">
                     <h3>Monthly Preview</h3>
                     <div className="task-stats">
-                        <div className="stat-card">
+                        <div className="stat-card done">
                             <h4>22</h4>
                             <p>Done</p>
                         </div>
-                        <div className="stat-card">
+                        <div className="stat-card in-progress">
                             <h4>7</h4>
                             <p>In Progress</p>
                         </div>
-                        <div className="stat-card">
+                        <div className="stat-card pending">
                             <h4>12</h4>
                             <p>Pending</p>
                         </div>
-                        <div className="stat-card">
+                        <div className="stat-card waiting-review">
                             <h4>14</h4>
                             <p>Waiting For Review</p>
                         </div>
                     </div>
                 </div>
             </section>
-            <footer className="dashboard-footer">
-                <IconContext.Provider value={{ size: 24, weight: 'duotone' }}>
-                    <HouseLine />
-                    <CalendarBlank />
-                    <ChatCircleDots />
-                    <UserCircle />
-                </IconContext.Provider>
-            </footer>
         </div>
     );
 };
