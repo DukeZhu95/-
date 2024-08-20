@@ -1,56 +1,46 @@
 import React from 'react';
-import {observer} from 'mobx-react-lite';
+import {observer, useLocalObservable} from 'mobx-react-lite';
+import {Button, Card} from '@/components';
 import './index.less';
 
 const HomeOne = () => {
+    /**
+     * 关于 useLocalObservable
+     * 1. useLocalObservable 是 mobx-react-lite 提供的一个钩子函数，用于在 React 函数组件中创建局部的 observable 对象。
+     * 2. 可以使局部的状态更加清晰。
+     * 3. 代码更加简洁，避免在顶层创建全局的 observable 对象，提高了组件的可维护性和可重用性。
+     */
+    const store = useLocalObservable(() => ({
+        count: 0,
+        increment() {
+            this.count++;
+        },
+        decrement() {
+            this.count--;
+        }
+    }));
+
     return (
         <div className='home-one-root'>
-            <header className="header">
-                <div className="date-selector">
-                    <button className="nav-button">← Mar</button>
-                    <div className="current-month">
-                        <h2>April</h2>
-                    </div>
-                    <button className="nav-button">May →</button>
-                </div>
-                <div className="date-display">
-                    <div className="date-item">4 Sat</div>
-                    <div className="date-item active">5 Sun</div>
-                    <div className="date-item">6 Mon</div>
-                    <div className="date-item">7 Tue</div>
-                </div>
-                <div className="user-avatar">
-                    <img src="path_to_user_image" alt="User Avatar" />
-                </div>
-            </header>
-
-            <section className="schedule-section">
-                <div className="timeline">
-                    <div className="time-label">9:00 AM</div>
-                    <div className="time-label">10:00 AM</div>
-                    <div className="time-label">11:00 AM</div>
-                    <div className="time-label">12:00 PM</div>
-                    <div className="time-label">1:00 PM</div>
-                    {/* 可以继续添加更多时间点 */}
-                </div>
-                <div className="schedule-list">
-                    <div className="schedule-item red" style={{ top: '10%' }}>
-                        <h4>Bore Inspection</h4>
-                        <p>05/04/2024</p>
-                        <p>77 Cow Road, Dairytown</p>
-                    </div>
-                    <div className="schedule-item blue" style={{ top: '30%' }}>
-                        <h4>Dairy Discharge Monitoring</h4>
-                        <p>05/04/2024</p>
-                        <p>592 Ohauiti Road, Ohauiti 3171</p>
-                    </div>
-                    <div className="schedule-item red" style={{ top: '50%' }}>
-                        <h4>Noxious Weed Control</h4>
-                        <p>05/04/2024</p>
-                        <p>Location Details</p>
-                    </div>
-                </div>
-            </section>
+            <h3>使用 useLocalObservable 在 React 函数组件中创建局部的 observable 对象</h3>
+            <div className='one-des'>
+                <h3> 关于 useLocalObservable</h3>
+                <h4>
+                    1. useLocalObservable 是 mobx-react-lite 提供的一个钩子函数，用于在 React 函数组件中创建局部的
+                    observable 对象。
+                </h4>
+                <h4> 2. 可以使局部的状态更加清晰</h4>
+                <h4> 3. 代码更加简洁，避免在顶层创建全局的 observable 对象，提高了组件的可维护性和可重用性。</h4>
+            </div>
+            <div className='one-card'>
+                <Card>
+                    <h2>Count: {store.count}</h2>
+                </Card>
+                <Card>
+                    <Button onClick={store.increment}> +1 </Button>
+                    <Button onClick={store.decrement}> -1 </Button>
+                </Card>
+            </div>
         </div>
     );
 };
