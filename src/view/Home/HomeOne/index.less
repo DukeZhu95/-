@@ -1,26 +1,58 @@
 .home-one-root {
-    display: flex;
-    flex: 1;
-    flex-direction: column;
-    align-items: center;
-    box-sizing: border-box;
-    width: 100%;
-    padding: 180px 20px;
-    color: rgb(152 155 157);
-    text-align: left;
-    background: rgb(49 51 56) url('@/assets/images/bgp.png');
-    border-radius: 10px;
+    background-color: #f5f7fa; // 背景色
+    padding: 20px; // 全局内边距
 
-    .one-des{
-        margin-top: 25px;
-    }
+    //.one-des {
+    //    display: flex;
+    //    justify-content: space-between;
+    //    align-items: center;
+    //
+    //    h3 {
+    //        font-size: 24px;
+    //        font-weight: 600;
+    //        color: #333;
+    //    }
+    //
+    //    h4 {
+    //        font-size: 18px;
+    //        color: #666;
+    //        margin-bottom: 10px;
+    //    }
+    //}
 
-    .one-card{
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        width: 30%;
-        height: 180px;
-        margin-top: 25px;
+    .one-card {
+        margin-top: 20px;
+
+        .card-item {
+            margin-bottom: 20px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+            h2 {
+                font-size: 20px;
+                color: #333;
+            }
+        }
+
+        .btn-group {
+            display: flex;
+            justify-content: space-between;
+
+            .button {
+                padding: 10px 20px;
+                border-radius: 50px;
+                background-color: #5a67d8;
+                color: #fff;
+                font-size: 16px;
+                border: none;
+                cursor: pointer;
+
+                &:hover {
+                    background-color: #434190;
+                }
+            }
+        }
     }
 }

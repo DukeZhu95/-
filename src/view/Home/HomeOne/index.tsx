@@ -4,41 +4,97 @@ import {Button, Card} from '@/components';
 import './index.less';
 
 const HomeOne = () => {
-    /**
-     * 关于 useLocalObservable
-     * 1. useLocalObservable 是 mobx-react-lite 提供的一个钩子函数，用于在 React 函数组件中创建局部的 observable 对象。
-     * 2. 可以使局部的状态更加清晰。
-     * 3. 代码更加简洁，避免在顶层创建全局的 observable 对象，提高了组件的可维护性和可重用性。
-     */
     const store = useLocalObservable(() => ({
-        count: 0,
-        increment() {
-            this.count++;
+        month: new Date().getMonth() + 1, // 初始化为当前月份 (1-12)
+        date: new Date().getDate(), // 初始化为当前日期 (1-31)
+
+        getDaysInMonth() {
+            return new Date(new Date().getFullYear(), this.month, 0).getDate();
         },
-        decrement() {
-            this.count--;
+
+        incrementMonth() {
+            if (this.month < 12) {
+                this.month++;
+            } else {
+                this.month = 1; // 如果超出12月，则回到1月
+            }
+
+            // 如果当前日期超过新的月份天数，则将日期调整为该月的最后一天
+            const daysInMonth = this.getDaysInMonth();
+            if (this.date > daysInMonth) {
+                this.date = daysInMonth;
+            }
+        },
+
+        incrementDate() {
+            const daysInMonth = this.getDaysInMonth();
+            if (this.date < daysInMonth) {
+                this.date++;
+            } else {
+                this.date = 1; // 如果超出当月天数，则回到1日
+            }
+        },
+
+        decrementMonth() {
+            if (this.month > 1) {
+                this.month--;
+            } else {
+                this.month = 12; // 如果低于1月，则回到12月
+            }
+
+            // 同样，确保日期不会超过新的月份天数
+            const daysInMonth = this.getDaysInMonth();
+            if (this.date > daysInMonth) {
+                this.date = daysInMonth;
+            }
+        },
+
+        decrementDate() {
+            if (this.date > 1) {
+                this.date--;
+            } else {
+                this.date = this.getDaysInMonth(); // 如果低于1日，则回到上个月的最后一天
+            }
         }
     }));
 
+    const getMonthName = (month: number) => {
+        const monthNames = ["January", "February", "March", "April", "May", "June",
+            "July", "August", "September", "October", "November", "December"];
+        return monthNames[month - 1];
+    };
+
+    const getDateName = (date: number) => {
+        return `Day ${date}`;
+    };
+
     return (
         <div className='home-one-root'>
-            <h3>使用 useLocalObservable 在 React 函数组件中创建局部的 observable 对象</h3>
-            <div className='one-des'>
-                <h3> 关于 useLocalObservable</h3>
-                <h4>
-                    1. useLocalObservable 是 mobx-react-lite 提供的一个钩子函数，用于在 React 函数组件中创建局部的
-                    observable 对象。
-                </h4>
-                <h4> 2. 可以使局部的状态更加清晰</h4>
-                <h4> 3. 代码更加简洁，避免在顶层创建全局的 observable 对象，提高了组件的可维护性和可重用性。</h4>
-            </div>
             <div className='one-card'>
-                <Card>
-                    <h2>Count: {store.count}</h2>
+                <Card className="month-display">
+                    <Button onClick={store.decrementMonth}> ← </Button>
+                    <h2>{getMonthName(store.month)}</h2>
+                    <Button onClick={store.incrementMonth}> → </Button>
                 </Card>
-                <Card>
-                    <Button onClick={store.increment}> +1 </Button>
-                    <Button onClick={store.decrement}> -1 </Button>
+                <Card className="month-display">
+                    <Button onClick={store.decrementDate}> ← </Button>
+                    <h2>{getDateName(store.date)}</h2>
+                    <Button onClick={store.incrementDate}> → </Button>
+                </Card>
+                <Card className='card-item'>
+                    <h2>Bore Inspection</h2>
+                    <p>05/04/2024</p>
+                    <p>77 Cow Road, Dairytown</p>
+                </Card>
+                <Card className='card-item'>
+                    <h2>Dairy Discharge Monitoring</h2>
+                    <p>05/04/2024</p>
+                    <p>592 Ohauiti Road, Ohauiti 3171</p>
+                </Card>
+                <Card className='card-item'>
+                    <h2>Noxious Weed Control</h2>
+                    <p>05/04/2024</p>
+                    <p>Some other location</p>
                 </Card>
             </div>
         </div>
