@@ -76,26 +76,76 @@ const HomeOne = () => {
                     <h2>{getMonthName(store.month)}</h2>
                     <Button onClick={store.incrementMonth}> → </Button>
                 </Card>
-                <Card className="month-display">
+                <Card className="date-display">
                     <Button onClick={store.decrementDate}> ← </Button>
                     <h2>{getDateName(store.date)}</h2>
                     <Button onClick={store.incrementDate}> → </Button>
                 </Card>
-                <Card className='card-item'>
-                    <h2>Bore Inspection</h2>
-                    <p>05/04/2024</p>
-                    <p>77 Cow Road, Dairytown</p>
-                </Card>
-                <Card className='card-item'>
-                    <h2>Dairy Discharge Monitoring</h2>
-                    <p>05/04/2024</p>
-                    <p>592 Ohauiti Road, Ohauiti 3171</p>
-                </Card>
-                <Card className='card-item'>
-                    <h2>Noxious Weed Control</h2>
-                    <p>05/04/2024</p>
-                    <p>Some other location</p>
-                </Card>
+
+                <h3>Ongoing...</h3>
+
+                <div className='schedule'>
+                    <div className='time-slot'>
+                        <span className='time'>9AM</span>
+                        <Card className='event' style={{backgroundColor: '#f97373'}}>
+                            <h2>Bore Inspection</h2>
+                            <p>05/04/2024</p>
+                            <p>77 Cow Road, Dairytown</p>
+                        </Card>
+                    </div>
+                    <div className='time-slot'>
+                        <span className='time'>10AM</span>
+                        <div className='line'></div>
+                    </div>
+                    <div className='time-slot'>
+                        <span className='time'>11AM</span>
+                        <Card className='event' style={{backgroundColor: '#63b3ed'}}>
+                            <h2>Dairy Discharge Monitoring</h2>
+                            <p>05/04/2024</p>
+                            <p>592 Ohauiti Road, Ohauiti 3171</p>
+                        </Card>
+                    </div>
+                    <div className='time-slot'>
+                        <span className='time'>12PM</span>
+                        <div className='line'></div>
+                    </div>
+                    <div className="time-slot">
+                        <span className="time">1PM</span>
+                        <div className="line"></div>
+                    </div>
+                    <div className='time-slot'>
+                        <span className='time'>2PM</span>
+                        <div className='line'></div>
+                    </div>
+                    <div className='time-slot'>
+                        <span className='time'>3PM</span>
+                        <div className='line'></div>
+                    </div>
+                    <div className='time-slot'>
+                        <span className='time'>4PM</span>
+                        <Card className='event' style={{backgroundColor: '#f97373'}}>
+                            <h2>Noxious Weed Control</h2>
+                            <p>05/04/2024</p>
+                            <p>Some other location</p>
+                        </Card>
+                    </div>
+                    <div className='time-slot'>
+                        <span className='time'>5PM</span>
+                        <div className='line'></div>
+                    </div>
+                    <div className='time-slot'>
+                        <span className='time'>6PM</span>
+                        <div className='line'></div>
+                    </div>
+                    <div className='time-slot'>
+                        <span className='time'>7PM</span>
+                        <div className='line'></div>
+                    </div>
+                    <div className='time-slot'>
+                        <span className='time'>8PM</span>
+                        <div className='line'></div>
+                    </div>
+                </div>
             </div>
         </div>
     );

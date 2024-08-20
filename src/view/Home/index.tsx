@@ -25,9 +25,9 @@ function Home() {
     const navigate = useNavigate();
     const params = useLocation();
     const {pathname} = params;
-    console.log('🚀 ~ file: index.tsx:7 ~ Tab ~ navigate:', pathname);
 
     const [activeLink, setActiveLink] = useState<string>(pathname);
+    const [isTabVisible, setIsTabVisible] = useState<boolean>(true); // 用于管理 home-tab 显示状态
 
     const MenuLink = [
         {name: 'HomeOne', icon: <GlobeHemisphereEast />, link: '/home/one'},
@@ -43,36 +43,46 @@ function Home() {
         navigate(link);
     };
 
+    const toggleTabVisibility = () => {
+        setIsTabVisible(!isTabVisible); // 切换显示状态
+    };
+
     return (
         <div className='home-root'>
-            <div className='home-tab'>
-                <div className='github-icon'>
-                    <a href='https://github.com/guokaigdg/react-template-mobile'>
-                        <GithubLogo size={30} color='#f9f4da' />
-                    </a>
-                </div>
-                {MenuLink.map((item: LinkItem) => (
-                    <div key={item.name} className='btn-wrap'>
-                        <Button
-                            type='text'
-                            className='text-btn'
-                            active={activeLink === item.link}
-                            onClick={() => handleClickLink(item.link)}
-                        >
-                            <IconContext.Provider
-                                value={{
-                                    size: 24,
-                                    weight: 'duotone',
-                                    mirrored: false
-                                }}
-                            >
-                                {item.icon}
-                            </IconContext.Provider>
-                            <span className='link-text'>{item.name}</span>
-                        </Button>
+            <button className="toggle-tab-btn" onClick={toggleTabVisibility}>
+                {isTabVisible ? 'Hide Menu' : 'Show Menu'}
+            </button>
+
+            {isTabVisible && (
+                <div className='home-tab'>
+                    <div className='github-icon'>
+                        <a href='https://github.com/guokaigdg/react-template-mobile'>
+                            <GithubLogo size={30} color='#f9f4da' />
+                        </a>
                     </div>
-                ))}
-            </div>
+                    {MenuLink.map((item: LinkItem) => (
+                        <div key={item.name} className='btn-wrap'>
+                            <Button
+                                type='text'
+                                className='text-btn'
+                                active={activeLink === item.link}
+                                onClick={() => handleClickLink(item.link)}
+                            >
+                                <IconContext.Provider
+                                    value={{
+                                        size: 24,
+                                        weight: 'duotone',
+                                        mirrored: false
+                                    }}
+                                >
+                                    {item.icon}
+                                </IconContext.Provider>
+                                <span className='link-text'>{item.name}</span>
+                            </Button>
+                        </div>
+                    ))}
+                </div>
+            )}
             <Outlet />
         </div>
     );

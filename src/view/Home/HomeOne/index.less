@@ -1,58 +1,107 @@
 .home-one-root {
-    background-color: #f5f7fa; // 背景色
-    padding: 20px; // 全局内边距
-
-    //.one-des {
-    //    display: flex;
-    //    justify-content: space-between;
-    //    align-items: center;
-    //
-    //    h3 {
-    //        font-size: 24px;
-    //        font-weight: 600;
-    //        color: #333;
-    //    }
-    //
-    //    h4 {
-    //        font-size: 18px;
-    //        color: #666;
-    //        margin-bottom: 10px;
-    //    }
-    //}
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    background-color: #f5f7fa;
+    height: 78vh;
+    overflow: hidden; /* 隐藏超出边界的内容 */
 
     .one-card {
-        margin-top: 20px;
+        width: 100%;
+        max-width: 400px; /* 设置最大宽度 */
+        margin: 0 auto; /* 水平居中 */
+        padding: 20px;
+        background-color: #ffffff;
+        font-family: "Agency FB", serif;
+        border-radius: 10px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        flex-grow: 1; /* 使其占满剩余空间 */
+        overflow-y: auto; /* 启用垂直滚动 */
 
-        .card-item {
+        .month-display, .date-display {
+            display: flex;
+            justify-content: space-between;  /* 确保按钮和文本在两边 */
+            align-items: center;
+            padding: 10px;
+            background-color: #ffb700;  /* 背景色可以根据需要调整 */
+            color: #000000;  /* 字体颜色 */
+            font-family: "Agency FB", serif;
+            border-radius: 8px;
             margin-bottom: 20px;
-            padding: 20px;
-            background-color: #fff;
-            border-radius: 10px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-
-            h2 {
-                font-size: 20px;
-                color: #333;
-            }
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            box-sizing: border-box;  /* 包括 padding 在内的宽度 */
         }
 
-        .btn-group {
+        .month-display h2, .date-display h2 {
+            flex-grow: 1;
+            text-align: center;  /* 文本居中 */
+            margin: 0;
+        }
+
+        .month-display button, .date-display button {
+            background-color: #000000;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px;
+            cursor: pointer;
+            min-width: 50px;  /* 确保按钮有足够的点击区域 */
+            margin: 0 5px;
+        }
+
+        .month-display button:hover, .date-display button:hover {
+            background-color: #434190;
+        }
+
+        .schedule {
+            margin-top: 20px;
+            border-left: 2px solid #ddd;
+            position: relative;
+            padding-left: 10px;
+        }
+
+        .time-slot {
             display: flex;
-            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px; /* 确保每个时间槽间距一致 */
+            position: relative;
+            width: 100%; /* 确保时间槽在父容器内 */
+            min-height: 60px; /* 统一每个时间槽的最小高度 */
+        }
 
-            .button {
-                padding: 10px 20px;
-                border-radius: 50px;
-                background-color: #5a67d8;
-                color: #fff;
-                font-size: 16px;
-                border: none;
-                cursor: pointer;
+        .time-slot .time {
+            font-size: 16px;
+            color: #666;
+            width: 50px;
+            text-align: right;
+            margin-right: 20px;
+            align-self: flex-start; /* 确保时间和事件内容顶部对齐 */
+        }
 
-                &:hover {
-                    background-color: #434190;
-                }
-            }
+        .time-slot .line {
+            height: 1px;
+            background-color: #ddd;
+            flex-grow: 1;
+            margin-left: 20px;
+            position: relative;
+            top: -10px;
+        }
+
+        .event {
+            flex-grow: 1;
+            padding: 15px;
+            border-radius: 8px;
+            color: #ffffff;
+            margin-left: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            word-wrap: break-word; /* 防止文本超出边界 */
+            background-color: #333; /* 背景颜色可以根据需要调整 */
+            max-width: calc(100% - 90px); /* 确保事件块不会超出时间槽 */
+            display: flex;
+            flex-direction: column;
+            justify-content: center; /* 垂直居中文字内容 */
         }
     }
 }
