@@ -25,19 +25,26 @@ const HomeOne = () => {
             </header>
 
             <section className="schedule-section">
-                <h3>Ongoing</h3>
+                <div className="timeline">
+                    <div className="time-label">9:00 AM</div>
+                    <div className="time-label">10:00 AM</div>
+                    <div className="time-label">11:00 AM</div>
+                    <div className="time-label">12:00 PM</div>
+                    <div className="time-label">1:00 PM</div>
+                    {/* 可以继续添加更多时间点 */}
+                </div>
                 <div className="schedule-list">
-                    <div className="schedule-item red">
+                    <div className="schedule-item red" style={{ top: '10%' }}>
                         <h4>Bore Inspection</h4>
                         <p>05/04/2024</p>
                         <p>77 Cow Road, Dairytown</p>
                     </div>
-                    <div className="schedule-item blue">
+                    <div className="schedule-item blue" style={{ top: '30%' }}>
                         <h4>Dairy Discharge Monitoring</h4>
                         <p>05/04/2024</p>
                         <p>592 Ohauiti Road, Ohauiti 3171</p>
                     </div>
-                    <div className="schedule-item red">
+                    <div className="schedule-item red" style={{ top: '50%' }}>
                         <h4>Noxious Weed Control</h4>
                         <p>05/04/2024</p>
                         <p>Location Details</p>
