@@ -1,51 +1,50 @@
-import React, {useEffect} from 'react';
-import {useStores} from '@/store';
+import React from 'react';
 import {Button} from '@/components';
-import {observer} from 'mobx-react-lite';
 import './index.less';
 
 const HomeTwo = () => {
-    const {globalStore} = useStores();
-    const {loading, data, getFetchGetTest} = globalStore;
-    // 查询
-    const handleClick = () => {
-        getFetchGetTest({
-            limit: 500
-        });
-    };
-
-    useEffect(() => {
-        getFetchGetTest({
-            limit: 500
-        });
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
-
     return (
         <div className='home-two-root'>
-            <div className='search-wrap'>
-                <input className='input' type='search' placeholder='输入宝可梦名称'></input>
-                <Button className='search-btn' onClick={handleClick}>
-                    查询
-                </Button>
+            <div className="event-header">
+                <h2>Bore Inspection</h2>
+                <p>77 Cow Road, Dairytown</p>
+                <p>Destination is 500 meters away.</p>
             </div>
 
-            {!loading && (
-                <div className='list-root'>
-                    {data.map((item: any) => (
-                        <div key={item.name} className='pokemon-item'>
-                            <img
-                                alt=''
-                                className='img'
-                                src={`https://img.pokemondb.net/artwork/large/${item.name}.jpg`}
-                            />
-                            <span>{item.name}</span>
-                        </div>
-                    ))}
+            <div className="action-buttons">
+                <Button className="record-btn">🎤 Record audio</Button>
+                <Button className="record-btn">📹 Record video</Button>
+            </div>
+
+            <div className="checklist">
+                <h3>ITEMS TO BE CHECKED</h3>
+                <div className="checklist-section">
+                    <div className="checklist-item">
+                        <input type="checkbox" id="siting1" />
+                        <label htmlFor="siting1">Approved BC documents and amendments on site</label>
+                    </div>
+                    <div className="checklist-item">
+                        <input type="checkbox" id="siting2" />
+                        <label htmlFor="siting2">Correct address and Lot No.</label>
+                    </div>
+                    <div className="checklist-item">
+                        <input type="checkbox" id="siting3" />
+                        <label htmlFor="siting3">Consent conditions checked</label>
+                    </div>
+
+                    <h4>Siting</h4>
+
+
                 </div>
-            )}
+                {/* Add more checklist items as necessary */}
+            </div>
+
+            <div className="footer-buttons">
+                <Button className="footer-btn">PAUSE</Button>
+                <Button className="footer-btn">FINISH</Button>
+            </div>
         </div>
     );
 };
 
-export default observer(HomeTwo);
+export default HomeTwo;
